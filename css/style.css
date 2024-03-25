@@ -1,0 +1,177 @@
+/* keyframes animation for the logo. logo starts off smaller and see through and get larger and more visible */
+@keyframes animateLogo {
+    /* start of the animation */
+    from {
+        width: 25px;
+        opacity: 0;
+    }
+    /* end of the animation */
+    to {
+        width: 475px;
+        opacity: 1;
+    }
+}
+
+/*****
+MOBILE VIEW / DEFAULT VIEW 
+*****/
+
+/* styles for the logo element */
+#logo {
+    animation-name: animateLogo; /* apply the already created logo animation */
+    animation-duration: 5s;      /* animation duration */
+}
+
+/* base styles for the body tag */
+body {
+    font-family: 'Poppins', serif;
+    background-image: url('../images/concrete_seamless.png');
+    background-color: #f1f1f1;
+}
+
+/* base styles for the header tag */
+header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* styles for the navigation links */
+.nav_links {
+    display: flex;
+    flex-direction: column;
+}
+
+/* make sure the links always appear blue, even if they have already been clicked */
+.nav_item a:visited {
+    color: blue;
+}
+
+
+.card>header {
+    background: #288088;
+    border: solid 2px #45ADAD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top-left-radius: 50px; /* Rounded top corners */
+    border-top-right-radius: 50px;
+}
+
+.card {
+    flex: 0 1 450px;
+    border-top-left-radius: 50px; 
+    border-top-right-radius: 50px;
+}
+
+/* styles for the pricing section */
+.pricing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* styles for the gallery section */
+.gallery {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* styles for images within the gallery */
+.gallery img {
+    border: solid 10px #50c7c7;
+    margin: 10px;
+    width: 300px;
+}
+
+/****
+ABOVE 900px VIEW
+*****/
+
+@media screen and (min-width: 900px) {
+
+    header {
+        flex-direction: row;
+        justify-content: space-between; /* Put the logo and nav links on opposite sides */
+    }
+
+    .nav_links {
+        flex-direction: row;
+    }
+
+    .card {
+        flex-basis: 275px;
+    }
+
+    /* make prices be next to each other instead of stack*/
+    .pricing {
+        flex-wrap: nowrap;
+        flex-direction: row;
+    }
+
+    /* make nav bar and logo stick at top of screen */
+    body>header {
+        position: sticky; 
+        top: 0px;
+    }
+}
+
+/* disable animation for users who prefer less motion */
+
+@media screen and (prefers-reduced-motion) {
+    #logo {
+        animation: none;
+    }
+}
+
+/* media query for printing in portrait orientation */
+
+@media print and (orientation: portrait) {
+    body {
+        font-family: Arial, Helvetica; /* new font */
+        background-image: none;
+    }
+
+    header {
+        justify-content: space-between;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    .nav_links {
+        flex-direction: row;
+        justify-content: space-around; /* space nav links evenly */
+    }
+
+    .pricing {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-end; /* align prices at bottom */
+    }
+
+    .card {
+        border: solid 2px #45ADDD;
+        flex-basis: 325px;
+    }
+
+    /* hid gallery heading but keep spacing */
+    #gallery {
+        visibility: hidden;
+    }
+
+    /* get rid of gallery flex box*/
+    .gallery {
+        display: none;
+    }
+
+    /* put the thumbs up emoji after the second sentence*/
+    .card li:nth-child(2)::after {
+        content: '👍';
+    }
+}
